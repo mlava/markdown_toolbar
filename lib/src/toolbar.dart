@@ -472,39 +472,6 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
                   ),
                 ),
               ),
-              DropdownMenuItem<int>(
-                value: 3,
-                child: Text(
-                  'H4',
-                  style: TextStyle(
-                    color: widget.dropdownTextColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 17.0,
-                  ),
-                ),
-              ),
-              DropdownMenuItem<int>(
-                value: 4,
-                child: Text(
-                  'H5',
-                  style: TextStyle(
-                    color: widget.dropdownTextColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16.0,
-                  ),
-                ),
-              ),
-              DropdownMenuItem<int>(
-                value: 5,
-                child: Text(
-                  'H6',
-                  style: TextStyle(
-                    color: widget.dropdownTextColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 15.0,
-                  ),
-                ),
-              ),
             ],
             dropdownString: 'H1',
           ),
