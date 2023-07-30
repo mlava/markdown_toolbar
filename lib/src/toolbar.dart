@@ -492,7 +492,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
           ),
         if (!hideDoubleBracket)
           _buildToolbarItem(
-            icon: Icons.format_bold,
+            icon: Icons(CustomIcons.doubleBracket),
             tooltip: showTooltips == true ? doubleBracketTooltip : '',
             onPressed: () => onDoubleBracketPressed(),
           ),
