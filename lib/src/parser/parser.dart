@@ -13,6 +13,7 @@ enum MarkdownToolbarOption {
   checkbox,
   quote,
   horizontalRule,
+  doubleBrackets,
 }
 
 enum FormatOption {
@@ -70,6 +71,15 @@ class Format {
     String? customCheckboxCheckedCharacter,
   }) {
     switch (markdownToolbarOption) {
+      case MarkdownToolbarOption.doubleBrackets:
+        Format(
+          formatOption: FormatOption.formatStartEnd,
+          controller: controller,
+          selection: selection,
+          character: '[[ ]]',
+          placeholder: 'Page',
+        ).format();
+        break;
       case MarkdownToolbarOption.bold:
         Format(
           formatOption: FormatOption.formatStartEnd,

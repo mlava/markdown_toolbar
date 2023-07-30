@@ -35,6 +35,7 @@ class MarkdownToolbar extends StatefulWidget {
     this.boldCharacter = '**',
     this.italicCharacter = '*',
     this.codeCharacter = '```',
+    this.doubleBracketCharacter = '[[ ]]',
     this.bulletedListCharacter = '-',
     this.horizontalRuleCharacter = '---',
     this.checkboxCheckedCharacter = "- [x] ",
@@ -54,6 +55,7 @@ class MarkdownToolbar extends StatefulWidget {
     this.showTooltips = true,
     this.headingTooltip = 'Heading',
     this.boldTooltip = 'Bold',
+    this.dBTooltip = 'Page',
     this.italicTooltip = 'Italic',
     this.strikethroughTooltip = 'Strikethrough',
     this.linkTooltip = 'Link',
@@ -175,6 +177,9 @@ class MarkdownToolbar extends StatefulWidget {
 
   /// Hide the bold button by setting [hideBold] to `true`.
   final bool hideBold;
+
+  /// Hide the page button by setting [hideDb] to `true`.
+  final bool hideDb;
 
   /// Hide the italic button by setting [hideItalic] to `true`.
   final bool hideItalic;
@@ -399,6 +404,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
     required bool showTooltips,
     required bool hideHeading,
     required bool hideBold,
+    required bool hideDb,
     required bool hideItalic,
     required bool hideStrikethrough,
     required bool hideLink,
@@ -411,6 +417,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
     required bool hideHorizontalRule,
     required String headingTooltip,
     required String boldTooltip,
+    required String dBTooltip,
     required String italicTooltip,
     required String strikethroughTooltip,
     required String linkTooltip,
@@ -474,6 +481,12 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
               ),
             ],
             dropdownString: 'H1',
+          ),
+        if (!hideDb)
+          _buildToolbarItem(
+            icon: Icons.DataArray,
+            tooltip: showTooltips == true ? dBTooltip : '',
+            onPressed: () => onDbPressed(),
           ),
         if (!hideBold)
           _buildToolbarItem(
@@ -572,6 +585,9 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
   void onBoldPressed() =>
       onToolbarItemPressed(markdownToolbarOption: MarkdownToolbarOption.bold);
 
+  void onDbPressed() => onToolbarItemPressed(
+      markdownToolbarOption: MarkdownToolbarOption.doubleBrackets);
+
   void onItalicPressed() =>
       onToolbarItemPressed(markdownToolbarOption: MarkdownToolbarOption.italic);
 
@@ -641,6 +657,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
             collapsable: widget.collapsable,
             showTooltips: widget.showTooltips,
             hideHeading: widget.hideHeading,
+            hideDb: widget.hideDb,
             hideBold: widget.hideBold,
             hideItalic: widget.hideItalic,
             hideStrikethrough: widget.hideStrikethrough,
