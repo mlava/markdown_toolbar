@@ -583,7 +583,7 @@ class Format {
         var beforeText = controller.text.substring(0, selection.start);
         var afterText =
             controller.text.substring(selection.end, controller.text.length);
-        controller.text = '$beforeText$newText$placeholder$newText$afterText';
+        controller.text = '$beforeText$newText$placeholder]]$afterText';
         baseOffset = selection.start + character!.length;
         extentOffset = selection.end + placeholder.length + character!.length;
         break;
