@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'parser/parser.dart';
-import 'custom_icons_icons.dart';
+import '../custom_icons_icons.dart';
 
 class MarkdownToolbar extends StatefulWidget {
   /// Creates a [MarkdownToolbar] widget.
@@ -493,7 +493,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
           ),
         if (!hideDoubleBracket)
           _buildToolbarItem(
-            icon: Icon(CustomIcons.doubleBracket),
+            icon: CustomIcons.doubleBracket,
             tooltip: showTooltips == true ? doubleBracketTooltip : '',
             onPressed: () => onDoubleBracketPressed(),
           ),
