@@ -18,6 +18,7 @@ enum MarkdownToolbarOption {
 
 enum FormatOption {
   formatStartEnd,
+  formatDoubleBracket,
   formatStart,
   formatList,
   formatAddNew,
@@ -73,7 +74,7 @@ class Format {
     switch (markdownToolbarOption) {
       case MarkdownToolbarOption.doubleBracket:
         Format(
-          formatOption: FormatOption.formatStartEnd,
+          formatOption: FormatOption.formatDoubleBracket,
           controller: controller,
           selection: selection,
           character: '[[',
@@ -247,6 +248,9 @@ class Format {
       case FormatOption.formatStartEnd:
         return selectionText.contains(character!, 0) &&
             selectionText.contains(character!, 1);
+      case FormatOption.formatDoubleBracket:
+        return selectionText.contains(character!, 0) &&
+            selectionText.contains(character!, 1);
       case FormatOption.formatStart:
         //TODO if same -> remove /// if other -> remove AND add new
         if (multipleCharacters != null) {
@@ -287,6 +291,13 @@ class Format {
           afterText.isNotEmpty &&
           reversedAfterText[0] != ' ' &&
           reversedAfterText.contains(character!);
+    } else if (formatOption == FormatOption.formatDoubleBracket) {
+      return beforeText.isNotEmpty &&
+          reversedBeforeText[0] != ' ' &&
+          reversedBeforeText.contains(character!) &&
+          afterText.isNotEmpty &&
+          reversedAfterText[0] != ' ' &&
+          reversedAfterText.contains(character!);
     } else {
       return false;
     }
@@ -299,6 +310,10 @@ class Format {
     textApplyOption = TextApplyOption.selectionHasCharacter;
     switch (formatOption) {
       case FormatOption.formatStartEnd:
+        newText = controller.text.substring(selection.start, selection.end);
+        newText = newText.replaceAll(character!, '');
+        break;
+      case FormatOption.formatDoubleBracket:
         newText = controller.text.substring(selection.start, selection.end);
         newText = newText.replaceAll(character!, '');
         break;
@@ -374,6 +389,11 @@ class Format {
       beforeText =
           String.fromCharCodes(reversedBeforeText.runes.toList().reversed);
       afterText = afterText.replaceFirst(character!, '');
+    } else if (formatOption == FormatOption.formatDoubleBracket) {
+      reversedBeforeText = reversedBeforeText.replaceFirst(character!, '');
+      beforeText =
+          String.fromCharCodes(reversedBeforeText.runes.toList().reversed);
+      afterText = afterText.replaceFirst(character!, '');
     }
   }
 
@@ -384,6 +404,12 @@ class Format {
     textApplyOption = TextApplyOption.noneAddNew;
     switch (formatOption) {
       case FormatOption.formatStartEnd:
+        newText = controller.text.substring(selection.start, selection.end);
+        newLine == true
+            ? newText = '\n$character\n$newText\n$character'
+            : newText = '$character$newText$character';
+        break;
+      case FormatOption.formatDoubleBracket:
         newText = controller.text.substring(selection.start, selection.end);
         newLine == true
             ? newText = '\n$character\n$newText\n$character'
@@ -432,6 +458,23 @@ class Format {
     var extentOffset = 0;
     switch (formatOption) {
       case FormatOption.formatStartEnd:
+        newText = '$beforeText$newText$afterText';
+        controller.text = newText;
+
+        if (textApplyOption == TextApplyOption.selectionHasCharacter ||
+            textApplyOption == TextApplyOption.outsideSelectionHasCharacter) {
+          baseOffset = selection.start - character!.length;
+          extentOffset = selection.end - character!.length;
+        } else if (textApplyOption == TextApplyOption.noneAddNew) {
+          baseOffset = selection.start + character!.length;
+          extentOffset = selection.end + character!.length;
+          if (newLine != null) {
+            baseOffset += 2;
+            extentOffset += 2;
+          }
+        }
+        break;
+      case FormatOption.formatDoubleBracket:
         newText = '$beforeText$newText$afterText';
         controller.text = newText;
 
@@ -527,6 +570,15 @@ class Format {
     var extentOffset = 0;
     switch (formatOption) {
       case FormatOption.formatStartEnd:
+        var newText = character;
+        var beforeText = controller.text.substring(0, selection.start);
+        var afterText =
+            controller.text.substring(selection.end, controller.text.length);
+        controller.text = '$beforeText$newText$placeholder$newText$afterText';
+        baseOffset = selection.start + character!.length;
+        extentOffset = selection.end + placeholder.length + character!.length;
+        break;
+      case FormatOption.formatDoubleBracket:
         var newText = character;
         var beforeText = controller.text.substring(0, selection.start);
         var afterText =
