@@ -412,8 +412,8 @@ class Format {
       case FormatOption.formatDoubleBracket:
         newText = controller.text.substring(selection.start, selection.end);
         newLine == true
-            ? newText = '\n$character\n$newText\n$character'
-            : newText = '$character$newText$character';
+            ? newText = '\n$character\n$newText\n]]'
+            : newText = '$character$newText]]';
         break;
       case FormatOption.formatStart:
         newText = controller.text.substring(selection.start, selection.end);
