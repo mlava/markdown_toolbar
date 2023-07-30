@@ -650,7 +650,6 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
       customHorizontalRuleCharacter: widget.horizontalRuleCharacter,
       customCheckboxUncheckedCharacter: widget.checkboxUncheckedCharacter,
       customCheckboxCheckedCharacter: widget.checkboxCheckedCharacter,
-      customDoubleBracketIcon: widget.doubleBracketIcon,
     );
   }
 
