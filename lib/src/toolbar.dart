@@ -678,6 +678,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
             hideQuote: widget.hideQuote,
             hideHorizontalRule: widget.hideHorizontalRule,
             headingTooltip: widget.headingTooltip,
+            doubleBracketTooltip: widget.doubleBracketTooltip,
             boldTooltip: widget.boldTooltip,
             italicTooltip: widget.italicTooltip,
             strikethroughTooltip: widget.strikethroughTooltip,
