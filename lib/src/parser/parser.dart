@@ -76,7 +76,7 @@ class Format {
           formatOption: FormatOption.formatStartEnd,
           controller: controller,
           selection: selection,
-          character: '[[ ]]',
+          character: '[[',
           placeholder: 'Page',
         ).format();
         break;
