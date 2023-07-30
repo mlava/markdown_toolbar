@@ -35,7 +35,7 @@ class MarkdownToolbar extends StatefulWidget {
     this.boldCharacter = '**',
     this.italicCharacter = '*',
     this.codeCharacter = '```',
-    this.doubleBracketCharacter = '[[ ]]',
+    this.doubleBracketCharacter = '[[',
     this.bulletedListCharacter = '-',
     this.horizontalRuleCharacter = '---',
     this.checkboxCheckedCharacter = "- [x] ",
@@ -154,6 +154,10 @@ class MarkdownToolbar extends StatefulWidget {
 
   /// If you want to use an alternative bold character (Default: `**`),
   /// assign a custom [String] to [boldCharacter]. For example `__`
+  final String doubleBracketCharacter;
+
+  /// If you want to use an alternative bold character (Default: `**`),
+  /// assign a custom [String] to [boldCharacter]. For example `__`
   final String boldCharacter;
 
   /// If you want to use an alternative italic character (Default: `*`),
@@ -178,8 +182,8 @@ class MarkdownToolbar extends StatefulWidget {
   /// Hide the bold button by setting [hideBold] to `true`.
   final bool hideBold;
 
-  /// Hide the page button by setting [hideDb] to `true`.
-  final bool hideDb;
+  /// Hide the page button by setting [hideDoubleBracket] to `true`.
+  final bool hideDoubleBracket;
 
   /// Hide the italic button by setting [hideItalic] to `true`.
   final bool hideItalic;
@@ -226,6 +230,9 @@ class MarkdownToolbar extends StatefulWidget {
 
   /// Set a custom tooltip [String] for the heading button. Leave blank `''` to disable tooltip.
   final String headingTooltip;
+
+  /// Set a custom tooltip [String] for the bold button. Leave blank `''` to disable tooltip.
+  final String doubleBracketTooltip;
 
   /// Set a custom tooltip [String] for the bold button. Leave blank `''` to disable tooltip.
   final String boldTooltip;
@@ -403,6 +410,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
     required bool collapsable,
     required bool showTooltips,
     required bool hideHeading,
+    required bool hideDoubleBracket,
     required bool hideBold,
     required bool hideDb,
     required bool hideItalic,
@@ -416,8 +424,8 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
     required bool hideQuote,
     required bool hideHorizontalRule,
     required String headingTooltip,
+    required String doubleBracketTooltip,
     required String boldTooltip,
-    required String dBTooltip,
     required String italicTooltip,
     required String strikethroughTooltip,
     required String linkTooltip,
@@ -482,11 +490,11 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
             ],
             dropdownString: 'H1',
           ),
-        if (!hideDb)
+        if (!hideDoubleBracket)
           _buildToolbarItem(
-            icon: Icons.DataArray,
-            tooltip: showTooltips == true ? dBTooltip : '',
-            onPressed: () => onDbPressed(),
+            icon: Icons.format_bold,
+            tooltip: showTooltips == true ? doubleBracketTooltip : '',
+            onPressed: () => onDoubleBracketPressed(),
           ),
         if (!hideBold)
           _buildToolbarItem(
@@ -585,8 +593,8 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
   void onBoldPressed() =>
       onToolbarItemPressed(markdownToolbarOption: MarkdownToolbarOption.bold);
 
-  void onDbPressed() => onToolbarItemPressed(
-      markdownToolbarOption: MarkdownToolbarOption.doubleBrackets);
+  void onDoubleBracketPressed() => onToolbarItemPressed(
+      markdownToolbarOption: MarkdownToolbarOption.doubleBracket);
 
   void onItalicPressed() =>
       onToolbarItemPressed(markdownToolbarOption: MarkdownToolbarOption.italic);
@@ -657,7 +665,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
             collapsable: widget.collapsable,
             showTooltips: widget.showTooltips,
             hideHeading: widget.hideHeading,
-            hideDb: widget.hideDb,
+            hideDoubleBracket: widget.hideDoubleBracket,
             hideBold: widget.hideBold,
             hideItalic: widget.hideItalic,
             hideStrikethrough: widget.hideStrikethrough,
