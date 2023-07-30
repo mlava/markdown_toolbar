@@ -41,6 +41,7 @@ class MarkdownToolbar extends StatefulWidget {
     this.checkboxCheckedCharacter = "- [x] ",
     this.checkboxUncheckedCharacter = "- [ ] ",
     this.hideHeading = false,
+    this.hideDoubleBracket: false,
     this.hideBold = false,
     this.hideItalic = false,
     this.hideStrikethrough = false,
