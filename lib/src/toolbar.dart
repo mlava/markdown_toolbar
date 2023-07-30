@@ -55,7 +55,7 @@ class MarkdownToolbar extends StatefulWidget {
     this.showTooltips = true,
     this.headingTooltip = 'Heading',
     this.boldTooltip = 'Bold',
-    this.dBTooltip = 'Page',
+    this.doubleBracketTooltip = 'Page',
     this.italicTooltip = 'Italic',
     this.strikethroughTooltip = 'Strikethrough',
     this.linkTooltip = 'Link',
