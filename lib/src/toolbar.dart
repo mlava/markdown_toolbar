@@ -412,7 +412,6 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
     required bool hideHeading,
     required bool hideDoubleBracket,
     required bool hideBold,
-    required bool hideDb,
     required bool hideItalic,
     required bool hideStrikethrough,
     required bool hideLink,
