@@ -154,6 +154,10 @@ class MarkdownToolbar extends StatefulWidget {
   final WrapAlignment alignment;
 
   /// If you want to use an alternative bold character (Default: `**`),
+  /// assign a custom [String] to [doubleBracketIcon]. For example `__`
+  final String doubleBracketIcon = Icon(CustomIcons.doubleBracket);
+
+  /// If you want to use an alternative bold character (Default: `**`),
   /// assign a custom [String] to [boldCharacter]. For example `__`
   final String doubleBracketCharacter;
 
@@ -492,7 +496,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
           ),
         if (!hideDoubleBracket)
           _buildToolbarItem(
-            icon: Icons.format_bold,
+            icon: doubleBracketIcon,
             tooltip: showTooltips == true ? doubleBracketTooltip : '',
             onPressed: () => onDoubleBracketPressed(),
           ),
@@ -649,6 +653,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
       customHorizontalRuleCharacter: widget.horizontalRuleCharacter,
       customCheckboxUncheckedCharacter: widget.checkboxUncheckedCharacter,
       customCheckboxCheckedCharacter: widget.checkboxCheckedCharacter,
+      customDoubleBracketIcon: widget.doubleBracketIcon,
     );
   }
 
