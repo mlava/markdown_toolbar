@@ -83,12 +83,18 @@ class Format {
         ).format();
         break;
       case MarkdownToolbarOption.tomorrow: // TODO
+        var now = DateTime.now();
+        var tomorrow = now.add(Duration(days: 1))
+        var formatter = DateFormat('MM-dd-y');
+        if (dateUid == "") {
+          dateUid = formatter.format(tomorrow);
+        }
         Format(
           formatOption: FormatOption.formatDoubleBracket,
           controller: controller,
           selection: selection,
-          character: '[[',
-          placeholder: 'Page',
+          character: '[[$dateUid]]',
+          placeholder: '',
         ).format();
         break;
       case MarkdownToolbarOption.bold:
