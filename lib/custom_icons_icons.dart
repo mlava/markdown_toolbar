@@ -38,5 +38,6 @@ class CustomIcons {
   static const IconData keyboard = IconData(0xe806, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData ocr = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData doubleBracket = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData slash = IconData(0xe809, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData inbox1 = IconData(0xe81a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
