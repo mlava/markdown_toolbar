@@ -14,6 +14,7 @@ enum MarkdownToolbarOption {
   quote,
   horizontalRule,
   doubleBracket,
+  tomorrow,
 }
 
 enum FormatOption {
@@ -73,6 +74,15 @@ class Format {
   }) {
     switch (markdownToolbarOption) {
       case MarkdownToolbarOption.doubleBracket:
+        Format(
+          formatOption: FormatOption.formatDoubleBracket,
+          controller: controller,
+          selection: selection,
+          character: '[[',
+          placeholder: 'Page',
+        ).format();
+        break;
+      case MarkdownToolbarOption.tomorrow: // TODO
         Format(
           formatOption: FormatOption.formatDoubleBracket,
           controller: controller,

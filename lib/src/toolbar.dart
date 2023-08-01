@@ -43,6 +43,7 @@ class MarkdownToolbar extends StatefulWidget {
     this.checkboxUncheckedCharacter = "- [ ] ",
     this.hideHeading = false,
     this.hideDoubleBracket: false,
+    this.hideTomorrow: false,
     this.hideBold = false,
     this.hideItalic = false,
     this.hideStrikethrough = false,
@@ -58,6 +59,7 @@ class MarkdownToolbar extends StatefulWidget {
     this.headingTooltip = 'Heading',
     this.boldTooltip = 'Bold',
     this.doubleBracketTooltip = 'Page',
+    this.tomorrowTooltip = 'Tomorrow',
     this.italicTooltip = 'Italic',
     this.strikethroughTooltip = 'Strikethrough',
     this.linkTooltip = 'Link',
@@ -187,6 +189,9 @@ class MarkdownToolbar extends StatefulWidget {
   /// Hide the page button by setting [hideDoubleBracket] to `true`.
   final bool hideDoubleBracket;
 
+  /// Hide the tomorrow button by setting [hideTomorrow] to `true`.
+  final bool hideTomorrow;
+
   /// Hide the italic button by setting [hideItalic] to `true`.
   final bool hideItalic;
 
@@ -233,8 +238,11 @@ class MarkdownToolbar extends StatefulWidget {
   /// Set a custom tooltip [String] for the heading button. Leave blank `''` to disable tooltip.
   final String headingTooltip;
 
-  /// Set a custom tooltip [String] for the bold button. Leave blank `''` to disable tooltip.
+  /// Set a custom tooltip [String] for the double bracket button. Leave blank `''` to disable tooltip.
   final String doubleBracketTooltip;
+
+  /// Set a custom tooltip [String] for the tomorrow button. Leave blank `''` to disable tooltip.
+  final String tomorrowTooltip;
 
   /// Set a custom tooltip [String] for the bold button. Leave blank `''` to disable tooltip.
   final String boldTooltip;
@@ -413,6 +421,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
     required bool showTooltips,
     required bool hideHeading,
     required bool hideDoubleBracket,
+    required bool hideTomorrow,
     required bool hideBold,
     required bool hideItalic,
     required bool hideStrikethrough,
@@ -426,6 +435,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
     required bool hideHorizontalRule,
     required String headingTooltip,
     required String doubleBracketTooltip,
+    required String tomorrowTooltip,
     required String boldTooltip,
     required String italicTooltip,
     required String strikethroughTooltip,
@@ -496,6 +506,12 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
             icon: CustomIcons.doubleBracket,
             tooltip: showTooltips == true ? doubleBracketTooltip : '',
             onPressed: () => onDoubleBracketPressed(),
+          ),
+        if (!hideTomorrow)
+          _buildToolbarItem(
+            icon: CustomIcons.fastForward,
+            tooltip: showTooltips == true ? tomorrowTooltip : '',
+            onPressed: () => onTomorrowPressed(),
           ),
         if (!hideBold)
           _buildToolbarItem(
@@ -597,6 +613,9 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
   void onDoubleBracketPressed() => onToolbarItemPressed(
       markdownToolbarOption: MarkdownToolbarOption.doubleBracket);
 
+  void onTomorrowPressed() => onToolbarItemPressed(
+      markdownToolbarOption: MarkdownToolbarOption.tomorrow);
+
   void onItalicPressed() =>
       onToolbarItemPressed(markdownToolbarOption: MarkdownToolbarOption.italic);
 
@@ -667,6 +686,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
             showTooltips: widget.showTooltips,
             hideHeading: widget.hideHeading,
             hideDoubleBracket: widget.hideDoubleBracket,
+            hideTomorrow: widget.hideTomorrow,
             hideBold: widget.hideBold,
             hideItalic: widget.hideItalic,
             hideStrikethrough: widget.hideStrikethrough,
@@ -680,6 +700,7 @@ class MarkdownToolbarState extends State<MarkdownToolbar> {
             hideHorizontalRule: widget.hideHorizontalRule,
             headingTooltip: widget.headingTooltip,
             doubleBracketTooltip: widget.doubleBracketTooltip,
+            tomorrowTooltip: widget.tomorrowTooltip,
             boldTooltip: widget.boldTooltip,
             italicTooltip: widget.italicTooltip,
             strikethroughTooltip: widget.strikethroughTooltip,
