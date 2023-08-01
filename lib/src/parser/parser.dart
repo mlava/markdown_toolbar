@@ -86,9 +86,7 @@ class Format {
         var now = DateTime.now();
         var tomorrow = now.add(Duration(days: 1))
         var formatter = DateFormat('MM-dd-y');
-        if (dateUid == "") {
-          dateUid = formatter.format(tomorrow);
-        }
+        var dateUid = formatter.format(tomorrow);
         Format(
           formatOption: FormatOption.formatDoubleBracket,
           controller: controller,
